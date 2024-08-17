@@ -1,0 +1,38 @@
+{
+  "checks": {
+    "active": {
+      "equals": 32
+    },
+    "bounded_degree": {
+      "equals": true
+    },
+    "complete_results": {
+      "equals": true
+    },
+    "deleted_excluded": {
+      "equals": true
+    },
+    "distances_correct": {
+      "equals": true
+    },
+    "inserted": {
+      "equals": 32
+    },
+    "queries": {
+      "equals": 8
+    },
+    "recall_at_5": {
+      "max": 1,
+      "min": 0.8
+    },
+    "restored_equal": {
+      "equals": true
+    },
+    "within_exact_radius": {
+      "max": 1,
+      "min": 0.8
+    }
+  },
+  "rationale": "Round-trip graph and RNG state through checksummed JSON.",
+  "synthetic": true
+}
