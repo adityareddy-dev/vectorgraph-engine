@@ -1,0 +1,8 @@
+{
+  "dimension": 8,
+  "distance": "squared_l2",
+  "ef_construction": 32,
+  "ef_search": 64,
+  "grpc_server_implemented": false,
+  "m": 8
+}
