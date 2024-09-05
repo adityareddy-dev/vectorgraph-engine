@@ -1,0 +1,47 @@
+{
+  "algorithm": "HNSW uses a sparse hierarchy of proximity graphs. Greedy descent finds an entry point, then bounded best-first exploration at layer zero returns candidates. Insertion uses efConstruction and diversified neighbor selection. Reference: https://arxiv.org/abs/1603.09320 .",
+  "architecture": "VectorService \u2192 HNSW nodes/layers \u2192 ANN search. Exact search is an independent distance-scan oracle. JSON persistence saves vectors, edges, levels and RNG state.",
+  "data_model": "Unique string IDs map to fixed-dimension finite vectors. Layer adjacency is per node with degree limits M (upper) and 2M (base). Query = vector, k and ef >= k.",
+  "description": "A hierarchical graph ANN index implemented from scratch with exact-search comparison, tombstones and checksummed persistence.",
+  "design": "Use squared L2 throughout; results expose squared distance explicitly. Measure recall against an exhaustive scan. Workloads require at least .8 recall except duplicate vectors, where an exact-distance-radius gate accepts alternative tied neighbors. Keep tombstones traversable to preserve reachability.",
+  "families": [
+    "uniform",
+    "clusters",
+    "duplicates",
+    "delete",
+    "restore",
+    "dimensions"
+  ],
+  "family_notes": [
+    "Index uniformly sampled vectors and compare nearest neighbors to brute force.",
+    "Test clustered embeddings and diverse neighbor selection.",
+    "Insert repeated vectors without reusing IDs.",
+    "Exclude tombstones from results while retaining graph navigation.",
+    "Round-trip graph and RNG state through checksummed JSON.",
+    "Vary vector dimension as well as collection size."
+  ],
+  "file_count": 165,
+  "limitations": "Python reference, not a million-vector production database. No embedding model, concurrency control, compressed vectors or live gRPC transport. proto schema is a design artifact only. Graph links may become asymmetric after per-node degree pruning. Deleted nodes remain in memory; rebuilding is needed for reclamation. Checksums are not authenticity signatures.",
+  "numpy": false,
+  "operations": "Tune ef and M against actual data and query distributions. Maintain an exact sample for recall measurement. Keep persistence in a trusted private directory and review schema before remote ingestion.",
+  "scope": "Random level assignment, greedy upper-layer navigation, ef-limited priority-queue search, neighbor diversification/pruning, insertion, deletion filtering, exact L2 baseline, persistence and an operation service class.",
+  "security": "Treat this as educational code; review it before handling trusted data.",
+  "sizes": [
+    16,
+    32,
+    48,
+    64,
+    96,
+    128
+  ],
+  "slug": "hnsw-vector-database",
+  "title": "Vector Database with HNSW Indexing",
+  "topics": [
+    "hnsw",
+    "vector-database",
+    "nearest-neighbors",
+    "information-retrieval",
+    "systems"
+  ],
+  "workload_count": 36
+}
