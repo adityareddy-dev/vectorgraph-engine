@@ -1,0 +1,8 @@
+syntax = "proto3";
+package syslab.vector;
+message Vector { string id=1; repeated double values=2; }
+message Query { repeated double values=1; uint32 k=2; uint32 ef=3; }
+message Neighbor { string id=1; double squared_distance=2; }
+message Reply { repeated Neighbor neighbors=1; }
+message Status { bool ok=1; }
+service Search { rpc Insert(Vector) returns (Status); rpc Find(Query) returns (Reply); }
