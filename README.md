@@ -1,4 +1,4 @@
-# Vector Database with HNSW Indexing
+# VectorGraph Engine
 
 A hierarchical graph ANN index implemented from scratch with exact-search comparison, tombstones and checksummed persistence.
 
@@ -44,7 +44,7 @@ Python reference, not a million-vector production database. No embedding model, 
 
 **Prerequisites:** Python 3.10+. The default reference uses Python's standard library. No API keys or external services are needed for the default sample.
 
-Download/extract this project or clone its repository, then open a terminal in the `hnsw-vector-database` folder. Create an isolated environment:
+Download/extract this project or clone its repository, then open a terminal in the `vectorgraph-engine` folder. Create an isolated environment:
 
 ```sh
 python -m venv .venv
